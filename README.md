@@ -1,4 +1,4 @@
-# 🌊 Reservoir Sampling Algorithm (Sampling from a Stream)
+# 🌊 Reservoir Sampling Algorithm
 
 This project implements the **Reservoir Sampling**. This fundamental technique is especially usefule when we have to deal with streaming data whose total length may be unknown or too large to fit into memory. These disadavantages are mainly known from production, 
 where data is collected continuously.
@@ -186,3 +186,56 @@ The following chart proves the uniformity of the selection process. The height o
 *Visualization Notes:*
 * The **horizontal red line** represents the expected probability of **0.1** (10,000 elements appear in 100,000 runs).
 * The **flat distribution** of the bars confirms that elements from the start of the stream ($e_0, e_1$) were selected as often as elements from the end ($e_{98}, e_{99}$).
+
+This verification test was executed using the script `verification_test.py`.
+
+---
+
+## ⚙️ Section 4: Setup Virtual Environment and Run the Code
+To run the full simulation, statistical verification, and visualization scripts, the following environment and dependencies are required.
+
+### 4.1 Create new folder
+First create a dedicated directory for the project, navigate into it and clone the repository containing the source files.
+1.  **Create and Navigate to Directory:** Choose a desired location and execute the following commands in your terminal:
+
+    ```bash
+    mkdir reservoir-sampling-project
+    cd reservoir-sampling-project
+    ```
+
+2.  **Clone the Repository:** Clone the project files into the new directory (Replace `<YOUR_REPO_URL>` with the actual URL):
+
+    ```bash
+    git clone https://github.com/MikolajRusin/reservoir-sampling .
+    ```
+
+### 4.2 Setup Virtual Environment and Dependencies
+
+It is highly recommended to use a virtual environment to manage dependencies.
+
+1.  **Create and Activate Virtual Environment:**
+
+    ```bash
+    # Create the environment
+    python -m venv myvenv
+
+    # Activate the environment (macOS/Linux)
+    source myvenv/bin/activate
+
+    # Activate the environment (Windows/CMD)
+    # myvenv\Scripts\activate
+    ```
+
+2.  **Install Dependencies:** Install the required Python packages:
+
+    ```bash
+    pip install numpy pandas matplotlib
+    ```
+
+### 4.3 Run the Verification Test
+
+To execute the statistical simulation and generate the `Homogeneity Proof` chart, run the dedicated script:
+
+```bash
+python verification_test.py
+```
