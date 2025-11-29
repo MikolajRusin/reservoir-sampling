@@ -25,3 +25,45 @@ As the name suggests the algorithm is based on **reservoir**, which can be an ar
 1. Put the first ***k*** elements int to the reservoir.
 2. For each incoming $i^{th}$ element, generate a random number ***j*** such that $\ 1 \le j \le i \$.
 3. If $\ 1 \le j \le k \$ then replace the $j^{th}$ in the reservoir with the $i^{th}$ element. Else, do nothing.
+
+---
+
+## 💻 Implementation
+To test the **Reservoir Sampling** algorithm, we simulated a continuous data stream that **does not load all data into memory at once**. This is achieved using a **Python Generator**.
+
+### 1. `streaming_data_generator.py`
+This file contains the generator function that produces elements one by one, simulating an external data source (like a sensor or log file).
+
+```
+def streaming_data_generator(n_stream: int):
+    """
+    Generates a sequence of integers from 0 up to (n_stream - 1), 
+    simulating a data stream.
+    """
+    for i in range(n_stream):
+        yield i
+```
+
+### 2. `reservoir_sampling.py`
+
+This file contains the core logic of the Reservoir Sampling algorithm.
+
+```
+def reservoir_sampling(stream: Generator, k: int):
+    # Define reservoir for our stored data
+    reservoir = []
+
+    # Fetching data from the simulated streaming data
+    for i, x in enumerate(stream, start=1):
+
+        # First, fill the reservoir
+        if i <= k:
+            reservoir.append(x)
+        # Random replacement ith element with probability k/i
+        else:
+            j = random.randint(1, i)
+            if j <= k:
+                reservoir[j - 1] = x
+    
+    return reservoir
+```
